@@ -1,0 +1,29 @@
+# Usa la imagen base de Selenium con Firefox
+FROM selenium/standalone-firefox:latest
+
+# Actualiza los paquetes y instala Python3, pip y nano
+RUN sudo apt-get update && \
+    sudo apt-get install -y python2.7 python-pip nano sudo xvfb sqlite3
+
+# Instala las dependencias de Python
+RUN pip2 install --upgrade pip && \
+    pip2 install selenium requests Flask Flask-SQLAlchemy Flask-Login bs4 flask_wtf
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia los archivos de ambos proyectos al contenedor
+COPY bot /app/bot
+COPY deepsec_blog /app/deepsec_blog
+
+# Exponer los puertos que las aplicaciones usarán
+EXPOSE 5000
+
+USER root
+
+WORKDIR /app
+
+COPY entrypoint.sh /app/entrypoint.sh
+
+# Comando para ejecutar el script de entrada
+CMD ["/app/entrypoint.sh"]
