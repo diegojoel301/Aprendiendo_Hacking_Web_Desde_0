@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title %> - Deepsec Academy</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="my-4">
+            <h1 class="text-center">Deepsec Academy</h1>
+        </header>
+        <div class="card">
+            <img class="card-img-top" src="<%= post.image %>" alt="<%= post.title %>">
+            <div class="card-body">
+                <h2 class="card-title"><%= post.title %></h2>
+                <p class="card-text"><%= post.content %></p>
+                <a href="/" class="btn btn-primary">Back to home</a>
+            </div>
+        </div>
+    </div>
+    <!-- Incluir Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

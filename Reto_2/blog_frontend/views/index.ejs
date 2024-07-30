@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepsec Academy Blog</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="my-4">
+            <h1 class="text-center">Deepsec Academy</h1>
+        </header>
+        <h2>Blog Posts</h2>
+        <div class="row">
+            <% posts.forEach(post => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="<%= post.image %>" alt="<%= post.title %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/post?url=http://posts.internal-deepsec.com/posts/<%= post.id %>"><%= post.title %></a></h5>
+                            <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <!--
+        <h2>Test URL</h2>
+        <form action="/proxy" method="GET" class="form-inline my-4">
+            <label for="url" class="mr-2">Enter URL:</label>
+            <input type="text" id="url" name="url" class="form-control mr-2">
+            <button type="submit" class="btn btn-primary">Fetch</button>
+        </form>
+        -->
+    </div>
+    <!-- Incluir Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

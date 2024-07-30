@@ -1,0 +1,43 @@
+# Usar la imagen base oficial de Node.js
+FROM node:18
+
+# Crear el directorio de trabajo para la app
+WORKDIR /app
+
+# Copiar el archivo package.json y package-lock.json
+COPY ./blog_frontend/package*.json ./
+
+# Instalar las dependencias de Node.js
+RUN npm install
+
+# Copiar los archivos de la aplicación Node.js
+COPY ./blog_frontend/ .
+
+# Instalar Flask y dependencias en Python
+RUN apt-get update && apt-get install -y python3 python3-pip
+COPY ./requirements.txt .
+RUN pip3 install -r requirements.txt --break-system-packages
+
+# Copiar los archivos de la aplicación Flask
+COPY ./backend /app/backend
+COPY ./admin /app/admin
+
+# Copiar el script de inicio
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+# Agregar la entrada en /etc/hosts
+RUN echo "127.0.0.1 posts.internal-deepsec.com" >> /etc/hosts
+
+# Exponer el puerto 3000 para Node.js
+EXPOSE 3000
+
+# Exponer el puerto 80 para Flask
+EXPOSE 80
+
+# Exponer el puerto 7462 para el panel de administración
+EXPOSE 7462
+
+# Iniciar las aplicaciones
+CMD ["/app/start.sh"]
+
